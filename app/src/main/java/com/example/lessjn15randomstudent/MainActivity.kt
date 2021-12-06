@@ -27,7 +27,19 @@ class MainActivity : AppCompatActivity() {
     var checkBox8: CheckBox? = null
     var checkBox9: CheckBox? = null
     var checkBox10: CheckBox? = null
-    var arrayListStudents = ArrayList<String>()
+    var arrayListStudents = mutableListOf<Student>(
+        Student("Стас",true,R.drawable.img0),
+        Student("Alex",true,R.drawable.img1),
+        Student("Саня",true,R.drawable.img2),
+        Student("Марина",true,R.drawable.img3),
+        Student("Надежда",true,R.drawable.img4),
+        Student("Наталья",true,R.drawable.img5),
+        Student("Дарья",true,R.drawable.img6),
+        Student("Дмитрий",true,R.drawable.img7),
+        Student("Егор",true,R.drawable.img8),
+        Student("Антон",true,R.drawable.img9),
+        Student("Ярослав",true,R.drawable.img10))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,43 +60,16 @@ class MainActivity : AppCompatActivity() {
         checkBox8 = findViewById(R.id.checkBox8)
         checkBox9 = findViewById(R.id.checkBox9)
         checkBox10 = findViewById(R.id.checkBox10)
-        arrayListStudents.add(0, "Cтас")
-        arrayListStudents.add(1, "Alex")
-        arrayListStudents.add(2, "Саня")
-        arrayListStudents.add(3, "Марина")
-        arrayListStudents.add(4, "Надежда")
-        arrayListStudents.add(5, "Наталья")
-        arrayListStudents.add(6, "Дарья")
-        arrayListStudents.add(7, "Дмитрий")
-        arrayListStudents.add(8, "Егор")
-        arrayListStudents.add(9, "Антон")
-        arrayListStudents.add(10, "Ярослав")
+
     }
 
     fun onBtnStartClick(view: View?) {
         btnStartSelect!!.setBackgroundColor(Color.RED)
-        val random = Random()
-        val sluc = random.nextInt(11)
-        if (arrayListsOtsut.contains(sluc)) {
-            tvRandomStudent!!.text = "Ярослав"
-            imageView!!.setImageResource(R.drawable.img10)
-        } else {
-            tvRandomStudent!!.text = arrayListStudents[sluc]
-            when (sluc) {
-                0 -> imageView!!.setImageResource(R.drawable.img0)
-                1 -> imageView!!.setImageResource(R.drawable.img1)
-                2 -> imageView!!.setImageResource(R.drawable.img2)
-                3 -> imageView!!.setImageResource(R.drawable.img3)
-                4 -> imageView!!.setImageResource(R.drawable.img4)
-                5 -> imageView!!.setImageResource(R.drawable.img5)
-                6 -> imageView!!.setImageResource(R.drawable.img6)
-                7 -> imageView!!.setImageResource(R.drawable.img7)
-                8 -> imageView!!.setImageResource(R.drawable.img8)
-                9 -> imageView!!.setImageResource(R.drawable.img9)
-                10 -> imageView!!.setImageResource(R.drawable.img10)
-            }
+     val ran  = arrayListStudents.filter { it.isEnabled}.random()
+        tvRandomStudent?.setText(ran.name)
+    imageView?.setImageResource(ran.imageID)
         }
-    }
+
 
     fun onBtnVyborOtsutClick(view: View?) {
         linearLayout!!.visibility = View.VISIBLE
@@ -104,57 +89,47 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onCheckboxClicked(view: View) {
-        val integer0 = 0
-        val integer1 = 1
-        val integer2 = 2
-        val integer3 = 3
-        val integer4 = 4
-        val integer5 = 5
-        val integer6 = 6
-        val integer7 = 7
-        val integer8 = 8
-        val integer9 = 9
-        val integer10 = 10
-        // Получаем флажок
+
+
         val checkBox = view as CheckBox
-        // Получаем, отмечен ли данный флажок
+
         val checked = checkBox.isChecked
         when (view.getId()) {
             R.id.checkBox0 -> if (checked) {
-                arrayListsOtsut.add(integer0)
-            } else arrayListsOtsut.remove(integer0)
+                arrayListStudents.get(0).isEnabled=false
+            } else  arrayListStudents.get(0).isEnabled=true
             R.id.checkBox1 -> if (checked) {
-                arrayListsOtsut.add(integer1)
+                arrayListStudents.get(1).isEnabled=false
             } else {
-                arrayListsOtsut.remove(integer1)
+                arrayListStudents.get(1).isEnabled=true
             }
             R.id.checkBox2 -> if (checked) {
-                arrayListsOtsut.add(integer2)
-            } else arrayListsOtsut.remove(integer2)
+                arrayListStudents.get(2).isEnabled=false
+            } else  arrayListStudents.get(2).isEnabled=true
             R.id.checkBox3 -> if (checked) {
-                arrayListsOtsut.add(integer3)
-            } else arrayListsOtsut.remove(integer3)
+                arrayListStudents.get(3).isEnabled=false
+            } else  arrayListStudents.get(3).isEnabled=true
             R.id.checkBox4 -> if (checked) {
-                arrayListsOtsut.add(integer4)
-            } else arrayListsOtsut.remove(integer4)
+                arrayListStudents.get(4).isEnabled=false
+            } else  arrayListStudents.get(4).isEnabled=true
             R.id.checkBox5 -> if (checked) {
-                arrayListsOtsut.add(integer5)
-            } else arrayListsOtsut.remove(integer5)
+                arrayListStudents.get(5).isEnabled=false
+            } else  arrayListStudents.get(5).isEnabled=true
             R.id.checkBox6 -> if (checked) {
-                arrayListsOtsut.add(integer6)
-            } else arrayListsOtsut.remove(integer6)
+                arrayListStudents.get(6).isEnabled=false
+            } else  arrayListStudents.get(6).isEnabled=true
             R.id.checkBox7 -> if (checked) {
-                arrayListsOtsut.add(integer7)
-            } else arrayListsOtsut.remove(integer7)
+                arrayListStudents.get(7).isEnabled=false
+            } else  arrayListStudents.get(7).isEnabled=true
             R.id.checkBox8 -> if (checked) {
-                arrayListsOtsut.add(integer8)
-            } else arrayListsOtsut.remove(integer8)
+                arrayListStudents.get(8).isEnabled=false
+            } else  arrayListStudents.get(8).isEnabled=true
             R.id.checkBox9 -> if (checked) {
-                arrayListsOtsut.add(integer9)
-            } else arrayListsOtsut.remove(integer9)
+                arrayListStudents.get(9).isEnabled=false
+            } else  arrayListStudents.get(9).isEnabled=true
             R.id.checkBox10 -> if (checked) {
-                arrayListsOtsut.add(integer10)
-            } else arrayListsOtsut.remove(integer10)
+                arrayListStudents.get(10).isEnabled=false
+            } else  arrayListStudents.get(10).isEnabled=true
         }
     }
 }
