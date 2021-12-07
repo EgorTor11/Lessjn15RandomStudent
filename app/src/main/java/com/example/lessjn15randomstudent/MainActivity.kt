@@ -27,18 +27,18 @@ class MainActivity : AppCompatActivity() {
     var checkBox8: CheckBox? = null
     var checkBox9: CheckBox? = null
     var checkBox10: CheckBox? = null
-    var arrayListStudents = mutableListOf<Student>(
-        Student("Стас",true,R.drawable.img0),
-        Student("Alex",true,R.drawable.img1),
-        Student("Саня",true,R.drawable.img2),
-        Student("Марина",true,R.drawable.img3),
-        Student("Надежда",true,R.drawable.img4),
-        Student("Наталья",true,R.drawable.img5),
-        Student("Дарья",true,R.drawable.img6),
-        Student("Дмитрий",true,R.drawable.img7),
-        Student("Егор",true,R.drawable.img8),
-        Student("Антон",true,R.drawable.img9),
-        Student("Ярослав",true,R.drawable.img10))
+    val mapStudents = mutableMapOf(
+        R.id.checkBox0 to  Student("Стас",true,R.drawable.img0),
+        R.id.checkBox1 to  Student("Alex",true,R.drawable.img1),
+        R.id.checkBox2 to   Student("Саня",true,R.drawable.img2),
+        R.id.checkBox3 to   Student("Марина",true,R.drawable.img3),
+        R.id.checkBox4 to   Student("Надежда",true,R.drawable.img4),
+        R.id.checkBox5 to    Student("Наталья",true,R.drawable.img5),
+        R.id.checkBox6 to  Student("Дарья",true,R.drawable.img6),
+        R.id.checkBox7 to   Student("Дмитрий",true,R.drawable.img7),
+        R.id.checkBox8 to   Student("Егор",true,R.drawable.img8),
+        R.id.checkBox9 to   Student("Антон",true,R.drawable.img9),
+        R.id.checkBox10 to   Student("Ярослав",true,R.drawable.img10))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onBtnStartClick(view: View?) {
         btnStartSelect!!.setBackgroundColor(Color.RED)
-     val ran  = arrayListStudents.filter { it.isEnabled}.random()
+     val ran  = mapStudents.values.toList().filter { it.isEnabled}.random() // преобразовал мапу в лист чисто по значениям, а его отфильтровал по полям
         tvRandomStudent?.setText(ran.name)
     imageView?.setImageResource(ran.imageID)
         }
@@ -89,47 +89,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onCheckboxClicked(view: View) {
-
-
         val checkBox = view as CheckBox
-
         val checked = checkBox.isChecked
-        when (view.getId()) {
-            R.id.checkBox0 -> if (checked) {
-                arrayListStudents.get(0).isEnabled=false
-            } else  arrayListStudents.get(0).isEnabled=true
-            R.id.checkBox1 -> if (checked) {
-                arrayListStudents.get(1).isEnabled=false
-            } else {
-                arrayListStudents.get(1).isEnabled=true
+        for (a in mapStudents){
+            if (a.key==view.getId()){
+                if (checked){
+                    a.value.isEnabled=false
+                }else{a.value.isEnabled=true}
             }
-            R.id.checkBox2 -> if (checked) {
-                arrayListStudents.get(2).isEnabled=false
-            } else  arrayListStudents.get(2).isEnabled=true
-            R.id.checkBox3 -> if (checked) {
-                arrayListStudents.get(3).isEnabled=false
-            } else  arrayListStudents.get(3).isEnabled=true
-            R.id.checkBox4 -> if (checked) {
-                arrayListStudents.get(4).isEnabled=false
-            } else  arrayListStudents.get(4).isEnabled=true
-            R.id.checkBox5 -> if (checked) {
-                arrayListStudents.get(5).isEnabled=false
-            } else  arrayListStudents.get(5).isEnabled=true
-            R.id.checkBox6 -> if (checked) {
-                arrayListStudents.get(6).isEnabled=false
-            } else  arrayListStudents.get(6).isEnabled=true
-            R.id.checkBox7 -> if (checked) {
-                arrayListStudents.get(7).isEnabled=false
-            } else  arrayListStudents.get(7).isEnabled=true
-            R.id.checkBox8 -> if (checked) {
-                arrayListStudents.get(8).isEnabled=false
-            } else  arrayListStudents.get(8).isEnabled=true
-            R.id.checkBox9 -> if (checked) {
-                arrayListStudents.get(9).isEnabled=false
-            } else  arrayListStudents.get(9).isEnabled=true
-            R.id.checkBox10 -> if (checked) {
-                arrayListStudents.get(10).isEnabled=false
-            } else  arrayListStudents.get(10).isEnabled=true
+
         }
+
     }
 }
