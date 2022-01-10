@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlankFragment">
+
+
+    <TableRow
+        android:id="@+id/tr2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tr">
+
+        <CheckBox
+            android:id="@+id/checkBox4_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Надежда" />
+
+        <CheckBox
+            android:id="@+id/checkBox6_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Дарья" />
+
+        <CheckBox
+            android:id="@+id/checkBox5_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Наталья" />
+
+        <CheckBox
+            android:id="@+id/checkBox7_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Дмитрий" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Марина" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Саня" />
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Alex" />
+
+        <CheckBox
+            android:id="@+id/checkBox0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:onClick="onCheckBoxClick"
+            android:text="Стас" />
+
+        <CheckBox
+            android:id="@+id/checkBox10_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckBoxClick"
+            android:text="Настя" />
+
+    </TableRow>
+
+    <CheckBox
+        android:id="@+id/checkBox9_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:onClick="onCheckBoxClick"
+        android:text="Антон"
+        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox8_"
+        app:layout_constraintStart_toStartOf="@+id/tr2" />
+
+    <Button
+        android:id="@+id/btnOK_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="7dp"
+        android:onClick="onBtnOkClick"
+        android:text="OK"
+        app:layout_constraintStart_toEndOf="@+id/checkBox8_"
+        app:layout_constraintTop_toBottomOf="@+id/tr2" />
+
+    <CheckBox
+        android:id="@+id/checkBox8_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:onClick="onCheckBoxClick"
+        android:text="Егор"
+        app:layout_constraintStart_toEndOf="@+id/checkBox9_"
+        app:layout_constraintTop_toBottomOf="@+id/tr2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
