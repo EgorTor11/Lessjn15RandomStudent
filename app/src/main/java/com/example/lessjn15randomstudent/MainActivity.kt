@@ -9,21 +9,18 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     var tableRow: TableRow? = null
     var tvRandomStudent: TextView? = null
     var str = ""
     var imageView: ImageView? = null
-    var arrayListsOtsut = ArrayList<Int>()
     var btnStartSelect: Button? = null
     var btnVybOtsut: Button? = null
-    var linearLayout: LinearLayout? = null
-    val dataModel:DataModel by viewModels()
-    val blankfragment = BlankFragment();
-    var mFragmentManager: FragmentManager? = null
-    val mFragmentTransaction: FragmentTransaction? = null
+    val dataModel: DataModel by viewModels()
+    val studentsJournalFragment = StudentsJournalFragment.newInstance()// StudentsJournalFragment()
+
+
     val mapStudents = mutableMapOf(
         0 to Student("Стас", true, R.drawable.img0),
         1 to Student("Alex", true, R.drawable.img1),
@@ -45,18 +42,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         imageView = findViewById(R.id.imageView)
         tvRandomStudent = findViewById(R.id.tvRandomStudent)
-
         btnStartSelect = findViewById(R.id.btnStartSelect)
-
         btnVybOtsut = findViewById(R.id.btnVybOtsut)
-
         tableRow = findViewById(R.id.tbrIm)
-       mFragmentManager=supportFragmentManager
-dataModel.message.observe(this){
+
+        dataModel.message.observe(this) {
 //Toast.makeText(this,it,Toast.LENGTH_LONG).show()
-    str=it
-    proverka()
-}
+            str = it
+            proverka()
+        }
     }
 
     fun onBtnStartClick(view: View?) {
@@ -73,23 +67,17 @@ dataModel.message.observe(this){
 
 
     fun onBtnVyborOtsutClick(view: View?) {
-        mFragmentManager?.beginTransaction()
+        supportFragmentManager.beginTransaction()
 
-            ?.replace(R.id.container,blankfragment)
+            .replace(R.id.container, StudentsJournalFragment.newInstance() )
 
-            ?.commit();
+            .commit();
 
 
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 11) {
-            str = data?.getStringExtra("id").toString()
-        }
 
-    }
 
 
     fun proverka() {
@@ -99,7 +87,5 @@ dataModel.message.observe(this){
     }
 
 
-
-
-
 }
+

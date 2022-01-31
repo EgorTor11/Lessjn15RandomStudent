@@ -6,16 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class BlankFragment : Fragment() {
+class StudentsJournalFragment : Fragment() {
     var str = ""
     val arreyListIdFrag = mutableListOf<Int>()
     val dataModel: DataModel by activityViewModels()
@@ -46,7 +42,7 @@ class BlankFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false)
+        return inflater.inflate(R.layout.fragment_jornal, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,7 +57,7 @@ class BlankFragment : Fragment() {
         }
 
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adap = RecAdapter(mapStudentsFrag,clickListener)
+        val adap = JornalStudentsRecyclerViewAdapter(mapStudentsFrag,clickListener)
         recyclerView.adapter = adap
 val btnOk=view.findViewById<Button>(R.id.btnOK_)
 
@@ -71,10 +67,16 @@ val btnOk=view.findViewById<Button>(R.id.btnOK_)
             dataModel.message.value = str
             str=""
 arreyListIdFrag.clear()
-            getActivity()?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit();
-
+          //  getActivity()?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit();
+parentFragmentManager.beginTransaction().remove(this).commit()
         }
     }
 
+ companion object{
+     @JvmStatic
+     fun newInstance(): StudentsJournalFragment {
+         return StudentsJournalFragment()
+     }
+    }
 
 }

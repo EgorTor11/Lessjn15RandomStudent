@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class RecAdapter(val names: Map<Int, Student>, val clickListener: (Int) -> Unit) :
-    RecyclerView.Adapter<RecAdapter.MyViewHolder>() {
+class JornalStudentsRecyclerViewAdapter(val names: Map<Int, Student>, val clickListener: (Int) -> Unit) :
+    RecyclerView.Adapter<JornalStudentsRecyclerViewAdapter.MyViewHolder>() {
     var listIntPosicion = mutableListOf<Int>()
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,9 +26,9 @@ class RecAdapter(val names: Map<Int, Student>, val clickListener: (Int) -> Unit)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.checkBoxRc.isChecked = false
-        if (listIntPosicion.contains(position)) {
-            holder.checkBoxRc.isChecked = true
-        }
+
+        holder.checkBoxRc.isChecked = listIntPosicion.contains(position) // через конструкцию  if лично мне понятнее и читабельнее
+
         holder.checkBoxRc.text = names.get(position)?.name
         holder.checkBoxRc.setOnClickListener {
             it as CheckBox
