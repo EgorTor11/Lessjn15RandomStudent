@@ -7,7 +7,10 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 
 
-class JornalStudentsRecyclerViewAdapter(val names: Map<Int, Student>, val clickListener: (Int) -> Unit) :
+class JornalStudentsRecyclerViewAdapter(
+    val names: Map<Int, Student>,
+    val clickListener: (Int) -> Unit,
+) :
     RecyclerView.Adapter<JornalStudentsRecyclerViewAdapter.MyViewHolder>() {
     var listIntPosicion = mutableListOf<Int>()
 
@@ -27,7 +30,8 @@ class JornalStudentsRecyclerViewAdapter(val names: Map<Int, Student>, val clickL
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.checkBoxRc.isChecked = false
 
-        holder.checkBoxRc.isChecked = listIntPosicion.contains(position) // через конструкцию  if лично мне понятнее и читабельнее
+        holder.checkBoxRc.isChecked =
+            listIntPosicion.contains(position) // через конструкцию  if лично мне понятнее и читабельнее
 
         holder.checkBoxRc.text = names.get(position)?.name
         holder.checkBoxRc.setOnClickListener {

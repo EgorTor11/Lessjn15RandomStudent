@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     var btnStartSelect: Button? = null
     var btnVybOtsut: Button? = null
     val dataModel: DataModel by viewModels()
-    val studentsJournalFragment = StudentsJournalFragment.newInstance()// StudentsJournalFragment()
 
 
     val mapStudents = mutableMapOf(
@@ -47,9 +46,8 @@ class MainActivity : AppCompatActivity() {
         tableRow = findViewById(R.id.tbrIm)
 
         dataModel.message.observe(this) {
-//Toast.makeText(this,it,Toast.LENGTH_LONG).show()
-            str = it
-            proverka()
+            //  str = it
+            proverka(it)
         }
     }
 
@@ -69,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     fun onBtnVyborOtsutClick(view: View?) {
         supportFragmentManager.beginTransaction()
 
-            .replace(R.id.container, StudentsJournalFragment.newInstance() )
+            .replace(R.id.container, StudentsJournalFragment.newInstance())
 
             .commit();
 
@@ -77,12 +75,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
-
-    fun proverka() {
+    fun proverka(it: List<Int>) {
         for (i in mapStudents.keys.toList()) {
-            mapStudents.get(i)?.isEnabled = !str.split(" ").contains(i.toString())
+            mapStudents.get(i)?.isEnabled = !it.contains(i)
         }
     }
 

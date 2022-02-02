@@ -3,11 +3,9 @@ package com.example.lessjn15randomstudent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
- class  DataModel: ViewModel() {
-    val message: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+class DataModel : ViewModel() {
+    val message: MutableLiveData<List<Int>> by lazy {
+        MutableLiveData<List<Int>>()
     }
-    val messageFromFrag1: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
-    }
+
 }

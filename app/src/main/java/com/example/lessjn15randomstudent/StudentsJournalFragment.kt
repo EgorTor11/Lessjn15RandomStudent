@@ -40,8 +40,6 @@ class StudentsJournalFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_jornal, container, false)
     }
 
@@ -49,34 +47,37 @@ class StudentsJournalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.rcView)
         val clickListener: (Int) -> Unit = { posicion: Int ->
-            if (arreyListIdFrag.contains(posicion)){
+            if (arreyListIdFrag.contains(posicion)) {
                 arreyListIdFrag.remove(posicion)
-                str=""
-            }else{ arreyListIdFrag.add(posicion)}
-            str = arreyListIdFrag.joinToString(" ")
+                // str = ""
+            } else {
+                arreyListIdFrag.add(posicion)
+            }
+            // str = arreyListIdFrag.joinToString(" ")
         }
 
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adap = JornalStudentsRecyclerViewAdapter(mapStudentsFrag,clickListener)
+        val adap = JornalStudentsRecyclerViewAdapter(mapStudentsFrag, clickListener)
         recyclerView.adapter = adap
-val btnOk=view.findViewById<Button>(R.id.btnOK_)
+        val btnOk = view.findViewById<Button>(R.id.btnOK_)
 
 
 
         btnOk?.setOnClickListener {
-            dataModel.message.value = str
-            str=""
-arreyListIdFrag.clear()
-          //  getActivity()?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit();
-parentFragmentManager.beginTransaction().remove(this).commit()
+
+            dataModel.message.value = arreyListIdFrag
+            //  str = ""
+            arreyListIdFrag.clear()
+            parentFragmentManager.beginTransaction().remove(this).commit()
         }
+
     }
 
- companion object{
-     @JvmStatic
-     fun newInstance(): StudentsJournalFragment {
-         return StudentsJournalFragment()
-     }
+    companion object {
+        @JvmStatic
+        fun newInstance(): StudentsJournalFragment {
+            return StudentsJournalFragment()
+        }
     }
 
 }
