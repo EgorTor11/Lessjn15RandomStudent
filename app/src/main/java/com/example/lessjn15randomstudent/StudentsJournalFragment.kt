@@ -15,6 +15,7 @@ class StudentsJournalFragment : Fragment() {
     var str = ""
     val arreyListIdFrag = mutableListOf<Int>()
     val dataModel: DataModel by activityViewModels()
+
     val mapStudentsFrag = mutableMapOf(
         0 to Student("Стас", true, R.drawable.img0),
         1 to Student("Alex", true, R.drawable.img1),
@@ -47,13 +48,8 @@ class StudentsJournalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.rcView)
         val clickListener: (Int) -> Unit = { posicion: Int ->
-            if (arreyListIdFrag.contains(posicion)) {
-                arreyListIdFrag.remove(posicion)
-                // str = ""
-            } else {
-                arreyListIdFrag.add(posicion)
-            }
-            // str = arreyListIdFrag.joinToString(" ")
+           dataModel.onCheckBoxClick(posicion)  // str = arreyListIdFrag.joinToString(" ")
+
         }
 
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -65,11 +61,14 @@ class StudentsJournalFragment : Fragment() {
 
         btnOk?.setOnClickListener {
 
-            dataModel.message.value = arreyListIdFrag
+
             //  str = ""
             arreyListIdFrag.clear()
             parentFragmentManager.beginTransaction().remove(this).commit()
         }
+        dataModel.message.observe(viewLifecycleOwner,{
+            adap.listIntPosicion=it
+        })
 
     }
 

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class JornalStudentsRecyclerViewAdapter(
-    val names: Map<Int, Student>,
-    val clickListener: (Int) -> Unit,
-) :
-    RecyclerView.Adapter<JornalStudentsRecyclerViewAdapter.MyViewHolder>() {
-    var listIntPosicion = mutableListOf<Int>()
+    val names: Map<Int, Student>, val clickListener: (Int) -> Unit,
+) : RecyclerView.Adapter<JornalStudentsRecyclerViewAdapter.MyViewHolder>() {
+    var listIntPosicion = listOf<Int>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -29,7 +31,6 @@ class JornalStudentsRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.checkBoxRc.isChecked = false
-
         holder.checkBoxRc.isChecked =
             listIntPosicion.contains(position) // через конструкцию  if лично мне понятнее и читабельнее
 
@@ -38,9 +39,9 @@ class JornalStudentsRecyclerViewAdapter(
             it as CheckBox
             if (it.isChecked) {
                 clickListener.invoke(position)
-                listIntPosicion.add(position)
+
             } else {
-                listIntPosicion.remove(position)
+
                 clickListener.invoke(position)
             }
         }

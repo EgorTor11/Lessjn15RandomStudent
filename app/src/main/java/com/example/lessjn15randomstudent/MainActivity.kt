@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     var imageView: ImageView? = null
     var btnStartSelect: Button? = null
     var btnVybOtsut: Button? = null
-    val dataModel: DataModel by viewModels()
+    public val dataModel: DataModel by viewModels()
 
 
     val mapStudents = mutableMapOf(
